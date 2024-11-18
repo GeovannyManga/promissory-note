@@ -1,101 +1,267 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState } from 'react';
+// @ts-ignore
+import html2pdf from 'html2pdf.js';
+
+const Formulario = () => {
+  let counter = 2021;
+  const [formData, setFormData] = useState({
+    documentType: '',
+    documentNumber: '',
+    studentName: '',
+    grade: '',
+    schoolYear: '',
+    guardianName: '',
+    idNumber: '',
+    email: '',
+  });
+
+  const [errors, setErrors] = useState({
+    documentNumber: '',
+    studentName: '',
+    grade: '',
+    email: '',
+    guardianName: '',
+    idNumber: '',
+  });
+
+  const date = new Date();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+    validateField(id, value);
+  };
+
+  const validateField = (field: string, value: string) => {
+    let errorMessage = '';
+    switch (field) {
+        case 'documentNumber':
+          if (!/^\d+$/.test(value)) {
+            errorMessage = 'El número de documento debe ser solo números.';
+          }
+          break;
+        case 'studentName':
+          if (/[^a-zA-Z\s]/.test(value)) {
+            errorMessage = 'El nombre del estudiante debe contener solo letras y espacios.';
+          } else if (/\s{2,}/.test(value)) {
+            errorMessage = 'El nombre del estudiante no debe contener espacios consecutivos.';
+          }
+          break;
+        case 'grade':
+          if (!/^\d+$/.test(value)) {
+            errorMessage = 'El grado debe ser un número.';
+          } else if (parseInt(value) < 1 || parseInt(value) > 11) {
+            errorMessage = 'El grado debe estar entre 1 y 11.';
+          }
+          break;
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            errorMessage = 'El correo electrónico no es válido.';
+          }
+          break;
+        case 'guardianName':
+          if (/[^a-zA-Z\s]/.test(value)) {
+            errorMessage = 'El nombre del acudiente debe contener solo letras y espacios.';
+          } else if (/\s{2,}/.test(value)) {
+            errorMessage = 'El nombre del acudiente no debe contener espacios consecutivos.';
+          }
+          break;
+        case 'idNumber':
+          if (!/^\d+$/.test(value)) {
+            errorMessage = 'El número de identificación debe ser solo números.';
+          }
+          break;
+        case 'documentType':
+          if (!value || value.trim() === '' || value === 'default') {
+            errorMessage = 'Debe seleccionar una opción válida.';
+          }
+          break;
+        default:
+          break;
+      }
+      
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: errorMessage,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formData.documentType || !formData.documentNumber || !formData.email || !formData.grade || !formData.guardianName || !formData.idNumber || !formData.schoolYear || !formData.studentName ) {
+        console.log('Debe seleccionar una opción válida.');
+        return
+      }
+    const content = document.createElement('div');
+    content.innerHTML = `
+      <p style="text-align: left;"><span style="color: #000000;">${counter++}</span></p>
+      <p style="text-align: center;"><span style="color: #ff0000;"><strong>CAE</strong></span></p>
+      <p style="text-align: center;"><span style="color: #ff0000;"><strong>CARTA DE INSTRUCCION</strong></span></p>
+      <p style="text-align: center;"><span style="color: #ff0000;"><strong>AUTORIZACION PARA DILIGENCIAR EL DOCUMENTO CON ESPACIOS EN BLANCO PARA SER</strong></span></p>
+      <p style="text-align: center;"><span style="color: #ff0000;"><strong>CONVERTIDO EN PAGARE</strong></span></p>
+      <p style="text-align: left;">Tipo de documento ${formData.documentType} No. identificacion ${formData.documentNumber}</p>
+      <p style="text-align: left;">1. El cliente por medio del presente escrito autoriza a la CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOTA "CEASB" de conformidad con el articulo 622 del codigo de comercio, en forma irrevocable y permanente para diligenciar sin previo aviso los espacios en blanco contenidos en el presente pagare que ha otorgado a su orden, cuando exista incumplimiento de cualquier obligaci&oacute;n a su cargo o se presente cualquier evento que permita la CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOT&Aacute; "CEASB" acelerar las obligaciones conforme a los reglamentos de los servicios, de acuerdo con las siguientes instrucciones:</p>
+      <p style="text-align: left;">a) El lugar de pago sera la ciudad de Bogota el lugar y fecha de emision del pagare seran el lugar y el dia en que sea llenado por la CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOTA "CEASB", y la fecha de vencimiento sera el dia siguiente al de la fecha de emision.</p>
+      <p style="text-align: left;">b) El monto por concepto de capital ser&aacute; igual al valor de las obligaciones contrafdas por el Contrato de Prestaci&oacute;n de Servicios Educativos del (los) estudiante(s) ${formData.studentName} de lo(s) grado(s) ${formData.grade} por el a&ntilde;o escolar 2024 exigibles a favor de la CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOTA "CEASB" de las que EL PADRE DE FAMILIA/ACUDIENTE sea deudor individual, conjunto o solidario, o de las que sea garante o avalista, o de las que por cualquier motivo resulten a su cargo, mas los valores que se relacionen con las anteriores obligaciones por concepto de honorarios de abogados, gastos administrativos y de cobranza, as&iacute; como cualquier otra suma que se deba por concepto distinto de intereses</p>
+      <p style="text-align: left;">c) El monto de intereses causados por mora correspondera a la tasa m&aacute;xima permitida por la Superintendencia Financiera por los servicios dejados de pagar.</p>
+      <p style="text-align: left;">d) En caso de incumplimiento o retardos frente a las obligaciones correspondientes a la prestacion de servicios educativos a cargo del PADRE DE FAMILIA/ACUDIENTE, La CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOT&Aacute; "CEASB" queda autorizada para exigir el valor de dichas obligaciones contraidas por el deudor, garante o avalista, individual, conjunta o solidariamente, sin necesidad de requerimiento judicial o extrajudicial para constituir en mora, asi como para incorporarlas en el pagare.</p><br>
+      <p style="text-align: left;">e) Asi mismo el PADRE DE FAMILIA /ACUDIENTE autoriza expresamente a diligenciar los espacios que se han dejado en blanco en el pagare. asi como los espacios correspondientes a su nombre y domicilio.</p>
+      <p style="text-align: center;"><strong>PAGARE</strong></p>
+      <p style="text-align: left;">Yo,${formData.guardianName}, mayor de edad, con domicilio en Bogot&aacute; DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagar&eacute; a la CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOTA."CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el dia ${date}, las siguientes cantidades<strong><br /></strong></p>
+      <p style="text-align: left;">1. Por concepto de Prestacion de Servicios Educativos, la suma de:&nbsp;</p>
+      <p style="text-align: left;">____________________________________________________($____________) moneda corriente.&nbsp;</p>
+      <p style="text-align: left;">2. Sobre la suma de capital mencionadas en el numeral primero de este pagare, reconocer&eacute; intereses de mora a la tasa maxima legalmente autorizada.</p>
+      <p style="text-align: left;">Bogot&aacute; ${date}</p>
+    `;
+
+    const options = {
+      margin: 0.5,
+      filename: 'Pagaré.pdf',
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+
+    html2pdf()
+      .from(content)
+      .set(options)
+      .save();
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Formulario de Pagaré</h2>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Campo de Tipo de Documento */}
+      <div>
+        <label htmlFor="documentType" className="block text-sm font-medium text-gray-700 mb-2">
+          Tipo de Documento:
+        </label>
+        <select
+          id="documentType"
+          value={formData.documentType}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+        >
+          <option value="">Seleccione</option>
+          <option value="CC">Cédula de ciudadanía</option>
+          <option value="TI">Tarjeta de identidad</option>
+          <option value="RC">Registro civil</option>
+        </select>
+        {Object.values(formData).every(value => value === "") || formData.documentType === "" && <p className="text-red-500 text-sm mt-1">Elige un tipo de documento válido</p>}
+      </div>
+  
+      {/* Campo de Número de Documento */}
+      <div>
+        <label htmlFor="documentNumber" className="block text-sm font-medium text-gray-700 mb-2">
+          Número de Documento:
+        </label>
+        <input
+          id="documentNumber"
+          type="text"
+          value={formData.documentNumber}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {errors.documentNumber && <p className="text-red-500 text-sm mt-1">{errors.documentNumber}</p>}
+      </div>
+  
+      {/* Campo de Nombre del Estudiante */}
+      <div>
+        <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-2">
+          Nombre del Estudiante:
+        </label>
+        <input
+          id="studentName"
+          type="text"
+          value={formData.studentName}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
+        />
+        {errors.studentName && <p className="text-red-500 text-sm mt-1">{errors.studentName}</p>}
+      </div>
+  
+      {/* Campo de Grado */}
+      <div>
+        <label htmlFor="grade" className="block text-sm font-medium text-gray-700 mb-2">
+          Grado:
+        </label>
+        <input
+          id="grade"
+          type="number"
+          value={formData.grade}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
+        />
+        {errors.grade && <p className="text-red-500 text-sm mt-1">{errors.grade}</p>}
+      </div>
+  
+      {/* Campo de Correo Electrónico */}
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+          Correo Electrónico:
+        </label>
+        <input
+          id="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
+        />
+        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+      </div>
+  
+      {/* Campo de Nombre del Acudiente */}
+      <div>
+        <label htmlFor="guardianName" className="block text-sm font-medium text-gray-700 mb-2">
+          Nombre del Acudiente:
+        </label>
+        <input
+          id="guardianName"
+          type="text"
+          value={formData.guardianName}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
+        />
+        {errors.guardianName && <p className="text-red-500 text-sm mt-1">{errors.guardianName}</p>}
+      </div>
+  
+      {/* Campo de ID del Acudiente */}
+      <div>
+        <label htmlFor="idNumber" className="block text-sm font-medium text-gray-700 mb-2">
+          Número de Identificación del Acudiente:
+        </label>
+        <input
+          id="idNumber"
+          type="text"
+          value={formData.idNumber}
+          onChange={handleChange}
+          className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          required
+        />
+        {errors.idNumber && <p className="text-red-500 text-sm mt-1">{errors.idNumber}</p>}
+      </div>
+  
+      <div className="flex justify-center">
+        <button type="submit" className="mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          Generar Pagaré
+        </button>
+      </div>
+    </form>
+  </div>
+  
   );
-}
+};
+
+export default Formulario;
