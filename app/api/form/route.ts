@@ -1,6 +1,8 @@
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
 import { JWT } from 'google-auth-library';
+import dotenv from 'dotenv';
+dotenv.config()
 
 // Definir un tipo para los datos del formulario
 interface FormData {
@@ -78,6 +80,7 @@ export async function POST(req: Request) {
   };
 
   // Llamar a la función para agregar datos a la hoja de cálculo
-  const sheetId = '1yDx1mQqScPjWz3Tj_lcWoR1N-NjRHXWownlgSU1nOlw'; // Tu ID de hoja de Google Sheets
+  const sheetId = process.env.SHEET_ID || ''; // Tu ID de hoja de Google Sheets
+  console.log(sheetId)
   return await addDataToGoogleSheets(sheetId, body);
 }
