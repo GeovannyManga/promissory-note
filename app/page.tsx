@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-// @ts-ignore
+// @ts-expect-error: Esta función puede devolver un tipo nulo en ciertos casos
 import html2pdf from 'html2pdf.js';
 
 const Formulario = () => {
@@ -93,12 +93,29 @@ const Formulario = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.documentType || !formData.documentNumber || !formData.email || !formData.grade || !formData.guardianName || !formData.idNumber || !formData.schoolYear || !formData.studentName ) {
+    if (formData.documentType === "" || formData.documentNumber === "" || formData.email === "" || formData.grade === "" || formData.guardianName ==="" || formData.idNumber === "" || formData.studentName==="" ) {
         console.log('Debe seleccionar una opción válida.');
+        console.log(formData)
         return
       }
+      
+        const response = await fetch('/api/form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+    
+        const data = await response.json();
+        if (data.message) {
+          alert('Formulario enviado correctamente');
+        }
+      
+
+
     const content = document.createElement('div');
     content.innerHTML = `
       <p style="text-align: left;"><span style="color: #000000;">${counter++}</span></p>
@@ -120,6 +137,8 @@ const Formulario = () => {
       <p style="text-align: left;">2. Sobre la suma de capital mencionadas en el numeral primero de este pagare, reconocer&eacute; intereses de mora a la tasa maxima legalmente autorizada.</p>
       <p style="text-align: left;">Bogot&aacute; ${date}</p>
     `;
+
+    
 
     const options = {
       margin: 0.5,
