@@ -10,7 +10,7 @@
 !.yarn/releases
 !.yarn/versions
 
-secrets.json
+
 
 # testing
 /coverage
@@ -40,3 +40,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+secrets.json
