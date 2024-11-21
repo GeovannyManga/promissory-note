@@ -1,85 +1,114 @@
-import { google } from 'googleapis';
-import { NextResponse } from 'next/server';
-import { JWT } from 'google-auth-library';
-import  dotenv  from "dotenv"
- dotenv.config()
 
-// Definir un tipo para los datos del formulario
+import { google } from "googleapis";
+import { NextResponse } from "next/server";
+import { JWT } from "google-auth-library";
+import dotenv from "dotenv";
+dotenv.config();
+
+const sheetId = process.env.SHEET_ID || "";
+
 interface FormData {
-    documentType: string;
-    documentNumber: string;
-    studentName: string;
-    grade: number;
-    guardianName: string; // Agregar más campos si es necesario
-    idNumber: string;
-    email: string;
+  documentType: string;
+  documentNumber: string;
+  studentName: string;
+  grade: number;
+  guardianName: string;
+  idNumber: string;
+  email: string;
 }
 
-// Manejo de solicitud POST
 export async function POST(req: Request) {
-  // Obtener los datos del cuerpo de la solicitud y hacer el cast a FormData
   const body: FormData = await req.json();
-  console.log('Datos del formulario:', body);
+  console.log("Datos del formulario:", body);
 
-  // Función para agregar datos a Google Sheets
   const addDataToGoogleSheets = async (sheetId: string, formData: FormData) => {
     try {
-      // Crear una instancia de JWT usando el archivo de clave
       const jwtClient = new JWT({
-        keyFile: 'secrets.json', // Ruta del archivo de credenciales JSON
-        scopes: ['https://www.googleapis.com/auth/spreadsheets'], // Permiso de escritura
+        keyFile: "secrets.json",
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
       });
 
-      // Usar el cliente JWT con la API de Google Sheets
-      const sheets = google.sheets({ version: 'v4', auth: jwtClient });
+      const sheets = google.sheets({ version: "v4", auth: jwtClient });
 
-      // Obtener la última fila con datos en la hoja
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: sheetId,
-        range: 'Hoja 1', // Solo el nombre de la hoja
+        range: "Hoja 1",
       });
 
-      // Obtener el número de filas actuales (esto incluye filas vacías)
       const numRows = response.data.values ? response.data.values.length : 0;
 
-      // Formatear los datos del formulario para que coincidan con las columnas de la hoja de cálculo
       const values = [
         [
-           2010 + numRows  ||'',
-          formData.documentType || '',
-          formData.documentNumber || '',
-          formData.email || '',
+          2010 + numRows || "",
+          formData.documentType || "",
+          formData.documentNumber || "",
+          formData.email || "",
           formData.grade || 0,
-          formData.studentName || '',
-          formData.idNumber || '',
-          formData.guardianName || '',
+          formData.studentName || "",
+          formData.idNumber || "",
+          formData.guardianName || "",
         ],
       ];
 
-      // Parámetros para la función append
       const params = {
-        spreadsheetId: sheetId, // ID de la hoja de cálculo
-        range: `Hoja 1!A${numRows + 1}`, // Empujar los datos a la siguiente fila vacía
-        valueInputOption: 'RAW', // O 'USER_ENTERED' para formato
+        spreadsheetId: sheetId,
+        range: `Hoja 1!A${numRows + 1}`,
+        valueInputOption: "RAW",
         requestBody: {
-          values: values, // Datos a insertar
+          values: values,
         },
       };
 
-      // Llamar al método append de la API de Google Sheets
       const appendResponse = await sheets.spreadsheets.values.append(params);
 
-      // Imprimir la respuesta para verificar que los datos se insertaron
-      console.log('Respuesta de la API:', appendResponse.data);
+      console.log("Respuesta de la API:", appendResponse.data);
 
-      return NextResponse.json({ message: 'Datos insertados correctamente', data: appendResponse.data });
+      return NextResponse.json({
+        message: "Datos insertados correctamente",
+        data: appendResponse.data,
+      });
     } catch (error) {
-      console.error('Error al insertar los datos:', error);
-      return NextResponse.json({ error: 'Hubo un problema al insertar los datos' }, { status: 500 });
+      console.error("Error al insertar los datos:", error);
+      return NextResponse.json(
+        { error: "Hubo un problema al insertar los datos" },
+        { status: 500 }
+      );
     }
   };
 
-  // Llamar a la función para agregar datos a la hoja de cálculo
-  const sheetId = '1yDx1mQqScPjWz3Tj_lcWoR1N-NjRHXWownlgSU1nOlw'; // Tu ID de hoja de Google Sheets
   return await addDataToGoogleSheets(sheetId, body);
+}
+
+export async function GET() {
+  try {
+    const jwtClient = new JWT({
+      keyFile: "secrets.json",
+      scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    });
+
+    const sheets = google.sheets({ version: "v4", auth: jwtClient });
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: sheetId,
+      range: "Hoja 1!A:A",
+    });
+
+    const values = response.data.values;
+    if (!values || values.length === 0) {
+      return NextResponse.json(
+        { message: "No hay datos en la columna A" },
+        { status: 404 }
+      );
+    }
+
+    const lastElement = values[values.length - 1][0];
+
+    return NextResponse.json({ lastElement });
+  } catch (error) {
+    console.error("Error al obtener el último elemento:", error);
+    return NextResponse.json(
+      { error: "Hubo un problema al obtener el último elemento" },
+      { status: 500 }
+    );
+  }
 }
