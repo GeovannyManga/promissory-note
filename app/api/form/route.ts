@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     try {
       const jwtClient = new JWT({
         email: process.env.GOOGLE_CLIENT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  key: process.env.GOOGLE_PRIVATE_KEY,
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],
       });
 
@@ -84,7 +84,7 @@ export async function GET() {
   try {
     const jwtClient = new JWT({
       email: process.env.GOOGLE_CLIENT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  key: process.env.GOOGLE_PRIVATE_KEY,
       scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     });
 
