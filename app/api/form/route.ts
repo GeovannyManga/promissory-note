@@ -24,7 +24,8 @@ export async function POST(req: Request) {
   const addDataToGoogleSheets = async (sheetId: string, formData: FormData) => {
     try {
       const jwtClient = new JWT({
-        keyFile: "secrets.json",
+        email: process.env.GOOGLE_CLIENT_EMAIL,
+  key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],
       });
 
@@ -82,7 +83,8 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const jwtClient = new JWT({
-      keyFile: "secrets.json",
+      email: process.env.GOOGLE_CLIENT_EMAIL,
+  key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
       scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     });
 

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import html2pdf from "html2pdf.js";
+
+
 
 const Formulario = () => {;
   const [formData, setFormData] = useState({
@@ -185,6 +186,8 @@ const formattedDate = date.toLocaleDateString('es-ES', {
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
+    const html2pdf = (await import("html2pdf.js")).default;
+
 
     html2pdf().from(content).set(options).save();
   };
