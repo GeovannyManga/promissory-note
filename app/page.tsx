@@ -12,6 +12,8 @@ const Formulario = () => {
     guardianName: "",
     idNumber: "",
     email: "",
+    phone: "",
+    addres: "",
   });
 
   const [errors, setErrors] = useState({
@@ -21,6 +23,8 @@ const Formulario = () => {
     email: "",
     guardianName: "",
     idNumber: "",
+    phone: "",
+    addres: ""
   });
 
   const date = new Date();
@@ -30,14 +34,14 @@ const Formulario = () => {
     year: "numeric",
   });
 
-  console.log(date.getFullYear);
+ 
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
-      ...prevData,
+     ...prevData,
       [id]: value,
     }));
     validateField(id, value);
@@ -107,6 +111,16 @@ const Formulario = () => {
           errorMessage = "Debe seleccionar una opción válida.";
         }
         break;
+        case "phone":
+  if (!/^\d{10}$/.test(value)) {
+    errorMessage = "El número de teléfono debe tener 10 dígitos.";
+  }
+  break;
+case "addres":
+  if (!/^[a-zA-Z\s,.-]+$/.test(value)) {
+    errorMessage = "La dirección no puede contener caracteres especiales.";
+  }
+  break;
       default:
         break;
     }
@@ -357,27 +371,6 @@ const Formulario = () => {
           )}
         </div>
 
-        {/* Campo de Correo Electrónico */}
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Correo Electrónico:
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
-            required
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
-        </div>
-
         {/* Campo de Nombre del Acudiente */}
         <div>
           <label
@@ -417,6 +410,46 @@ const Formulario = () => {
           />
           {errors.idNumber && (
             <p className="text-red-500 text-sm mt-1">{errors.idNumber}</p>
+          )}
+        </div>
+  
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="phone">Número de Celular</label>
+  <input 
+    className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+    required type="number" name="phone" id="phone" />
+  {errors.phone && (
+    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+  )}
+</div>
+
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="addres">Direccion de Residencia</label>
+  <input 
+    className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+    required type="text" name="addres" id="addres" />
+  {errors.addres && (
+    <p className="text-red-500 text-sm mt-1">{errors.addres}</p>
+  )}
+</div>
+        {/* Campo de Correo Electrónico */}
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Correo Electrónico:
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+            required
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
           )}
         </div>
 

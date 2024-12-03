@@ -15,6 +15,8 @@ interface FormData {
   guardianName: string;
   idNumber: string;
   email: string;
+  phone: number;
+  addres: string
 }
 
 export async function POST(req: Request) {
@@ -48,6 +50,8 @@ export async function POST(req: Request) {
           formData.studentName || "",
           formData.idNumber || "",
           formData.guardianName || "",
+          formData.addres || "",
+          formData.phone || ""
         ],
       ];
 
