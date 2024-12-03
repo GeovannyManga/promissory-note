@@ -428,9 +428,6 @@ case "addres":
   <input  onChange={handleChange}
     className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
     required type="text" name="addres" id="addres" />
-  {errors.addres && (
-    <p className="text-red-500 text-sm mt-1">{errors.addres}</p>
-  )}
 </div>
         {/* Campo de Correo Electrónico */}
         <div>
