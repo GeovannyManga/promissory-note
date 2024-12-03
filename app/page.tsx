@@ -415,7 +415,7 @@ case "addres":
   
 <div>
   <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="phone">Número de Celular</label>
-  <input 
+  <input  onChange={handleChange} 
     className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
     required type="number" name="phone" id="phone" />
   {errors.phone && (
@@ -425,7 +425,7 @@ case "addres":
 
 <div>
   <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="addres">Direccion de Residencia</label>
-  <input 
+  <input  onChange={handleChange}
     className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
     required type="text" name="addres" id="addres" />
   {errors.addres && (
