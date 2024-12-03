@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 
+
+
 const Formulario = () => {
+  const [loader, setLoader] = useState(true);
   const [formData, setFormData] = useState({
     documentType: "",
     documentNumber: "",
@@ -133,6 +136,7 @@ case "addres":
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoader(false)
     if (
       formData.documentType === "" ||
       formData.documentNumber === "" ||
@@ -243,13 +247,29 @@ case "addres":
       filename: `Pagaré_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      paginate: {
+        addLink: true,
+        displayMode: 'fullpage',
+        scale: 1.2,
+        viewport: 'page',
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
+
+  
 
     const options2 = {
       margin: 0.5,
       filename: `Autorización_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      paginate: {
+        addLink: true,
+        displayMode: 'fullpage',
+        scale: 1.2,
+        viewport: 'page',
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
     const html2pdf = (await import("html2pdf.js")).default;
@@ -257,12 +277,15 @@ case "addres":
     html2pdf().from(content2).set(options2).save();
 
     html2pdf().from(content).set(options).save();
+    setLoader(true)
   };
 
 
   return (
+    <div>
+     {loader? (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+       <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
         Formulario de Pagaré
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -459,7 +482,20 @@ case "addres":
           </button>
         </div>
       </form>
+
     </div>
+      ) :(
+        <div className="flex justify-center items-center h-screen w-screen">
+  <div
+    className="flex justify-center items-center h-[200px] w-[200px] bg-center bg-cover"
+    style={{ backgroundImage: "url('/load-32.gif')" }}
+  ></div>
+</div>
+
+
+      )
+      }
+      </div>
   );
 };
 
