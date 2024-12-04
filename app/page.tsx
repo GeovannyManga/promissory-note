@@ -347,7 +347,7 @@ case "addres":
             htmlFor="studentName"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Nombre del Estudiante:
+            Nombre y Apellido del Estudiante:
           </label>
           <input
             id="studentName"
@@ -404,7 +404,7 @@ case "addres":
             htmlFor="guardianName"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Nombre del Acudiente:
+            Nombre y Apellido del Acudiente:
           </label>
           <input
             id="guardianName"
