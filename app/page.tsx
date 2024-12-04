@@ -226,12 +226,12 @@ case "addres":
 
 
 
-<p style="text-align: left; margin-top:420px"><span style="color: #000000;">AUTORIZACI&Oacute;N DE DESTRUCCI&Oacute;N DE DOCUMENTOS: Autorizo(amos) a la CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" para que en el evento en que no exista una deuda contraida con la instituci&oacute;n, llevar&aacute; a cabo la destrucci&oacute;n de todos los documentos que he(mos) aportado con la solicitud del servicio y todo lo que haya(mos) firmado para el efecto.</span></p>
+<p style="text-align: left; margin-top:460px"><span style="color: #000000;">AUTORIZACI&Oacute;N DE DESTRUCCI&Oacute;N DE DOCUMENTOS: Autorizo(amos) a la CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" para que en el evento en que no exista una deuda contraida con la instituci&oacute;n, llevar&aacute; a cabo la destrucci&oacute;n de todos los documentos que he(mos) aportado con la solicitud del servicio y todo lo que haya(mos) firmado para el efecto.</span></p>
 <p style="text-align: left;">DECLARACIÓN DE RECEPCIÓN DE INFORMACI&Oacute;N: Declaro(amos) con mi(nuestras) firma(s) que la <span style="color: #000000;">CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" me (nos) ha informado sobre el contenido del (de los) contrato(s) y lo(s) ha puesto a mi(nuestra) disposicion, el(los) cual(es) acepto(amos) de maner alibre y espontanea; as&iacute; mismo me(nos) obligo(amos) a consultar y revisar su contenido periodicamente, decalro(amos) que se me(nos) informo y capacito acerca de los procedimientos el bloqueo e inhabilitacion de las plataformas<br> <br> educativas, Asimismo los terminos y condiciones de los beneficios que diera lugar ofrecidos por la instituci&oacute;n. De acuerdo con lo anterior, manifiesto(amos) que se me(nos) acerca de los costos asociados a los servicios de educaci&oacute;n, los cuales acepto(amos), declaro(amos) que conozco(conocemos) que puedo(podemos) obtener mas informaci&oacute;n en las oficinas de la CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOT&Aacute; "CEASB</span>&nbsp;&nbsp;</p>
 <p>Declaro(amos) que toda la informaci&oacute;n suministrada es veraz. Bogot&aacute; D.C a los ${formattedDate}</p>
 <table style="border-collapse: collapse; width: 56.3177%; height: 119px;" border="1">
     <tbody>
-    <tr style="height: 119px;">
+    <tr style="height: 90px;">
     <td style="width: 35.7143%; height: 119px;">&nbsp;</td>
     <td style="width: 19.7951%; height: 119px;">&nbsp;</td>
     </tr>
