@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation'
 
 
 
 const Formulario = () => {
+  const router = useRouter()
   const [loader, setLoader] = useState(true);
   const [formData, setFormData] = useState({
     documentType: "",
@@ -286,6 +288,7 @@ case "addres":
 
     html2pdf().from(content).set(options).save();
     setLoader(true)
+    router.push('/finish')
   };
 
 
