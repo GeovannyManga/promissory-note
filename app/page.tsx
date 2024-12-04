@@ -267,7 +267,7 @@ case "addres":
   
 
     const options2 = {
-      margin: 0.5,
+      margin: 0.6,
       filename: `Autorización_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
