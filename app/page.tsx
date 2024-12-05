@@ -200,7 +200,7 @@ case "addres":
     <meta charset="UTF-8">
     <title>Documento</title>
 </head>
-<body>
+<body style="height: 100em;">
     <div>
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
