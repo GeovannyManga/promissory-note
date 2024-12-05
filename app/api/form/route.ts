@@ -1,4 +1,3 @@
-
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { JWT } from "google-auth-library";
@@ -16,7 +15,13 @@ interface FormData {
   idNumber: string;
   email: string;
   phone: number;
-  addres: string
+  addres: string;
+}
+
+// Función para generar un código dinámico basado en el número de filas
+function generateDynamicCode(baseYear: string, currentRowCount: number): string {
+  const formattedNumber = String(currentRowCount + 1).padStart(3, "0"); // Formatea con ceros
+  return `${baseYear}_${formattedNumber}`;
 }
 
 export async function POST(req: Request) {
@@ -25,39 +30,27 @@ export async function POST(req: Request) {
 
   const addDataToGoogleSheets = async (sheetId: string, formData: FormData) => {
     try {
+      // Configuración de autenticación con JWT
       const jwtClient = new JWT({
         email: process.env.GOOGLE_CLIENT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY,
+        key: process.env.GOOGLE_PRIVATE_KEY, // Manejo de saltos de línea en claves
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],
       });
 
       const sheets = google.sheets({ version: "v4", auth: jwtClient });
 
+      // Obtener el conteo de filas actuales en la hoja
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: sheetId,
-        range: "Hoja 1",
+        range: "Hoja 1!A:A",
       });
 
-      function generateDynamicCode(baseYear: string, numRows: number) {
-        const codes = [];
-        for (let i = 1; i <= numRows; i++) {
-            // Formatea el número con 3 dígitos, añadiendo ceros al principio
-            const formattedNumber = String(i).padStart(3, '0');
-            codes.push(`${baseYear}_${formattedNumber}`);
-            return codes
-          }
-          const resp = codes[codes.length -1]
-          return resp
-        
-    }
-    
-    const baseYear = "2025";
-    const numRows = response.data.values ? response.data.values.length : 0;
-    const generatedCodes = generateDynamicCode(baseYear, numRows);
+      const numRows = response.data.values ? response.data.values.length : 0;
+      const dynamicCode = generateDynamicCode("2025", numRows); // Generar código dinámico
 
       const values = [
         [
-          generatedCodes[0] || "",
+          dynamicCode,
           formData.documentType || "",
           formData.documentNumber || "",
           formData.email || "",
@@ -66,16 +59,17 @@ export async function POST(req: Request) {
           formData.idNumber || "",
           formData.guardianName || "",
           formData.addres || "",
-          formData.phone || ""
+          formData.phone || "",
         ],
       ];
 
+      // Parámetros para insertar datos en la hoja
       const params = {
         spreadsheetId: sheetId,
-        range: `Hoja 1!A${numRows + 1}`,
+        range: `Hoja 1!A${numRows + 1}`, // Añadir en la siguiente fila
         valueInputOption: "RAW",
         requestBody: {
-          values: values,
+          values,
         },
       };
 
@@ -101,14 +95,16 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
+    // Configuración de autenticación con JWT
     const jwtClient = new JWT({
       email: process.env.GOOGLE_CLIENT_EMAIL,
-  key: process.env.GOOGLE_PRIVATE_KEY,
+      key: process.env.GOOGLE_PRIVATE_KEY, // Manejo de saltos de línea en claves
       scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     });
 
     const sheets = google.sheets({ version: "v4", auth: jwtClient });
 
+    // Leer la columna A
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
       range: "Hoja 1!A:A",
@@ -122,7 +118,7 @@ export async function GET() {
       );
     }
 
-    const lastElement = values[values.length - 1][0];
+    const lastElement = values[values.length - 1][0]; // Último elemento
 
     return NextResponse.json({ lastElement });
   } catch (error) {
