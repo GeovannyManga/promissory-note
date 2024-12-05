@@ -259,7 +259,7 @@ case "addres":
         <p style="text-align: left;">
             2. Sobre la suma de capital mencionada en el numeral primero de este pagaré, reconoceré intereses de mora a la tasa máxima legalmente autorizada.
         </p>
-        <p style="text-align: left;">Bogotá <strong style="text-transform: uppercase;">${formattedDate}</strong></p>
+        <p style="text-align: left; margin-bottom: 10px">Bogotá <strong style="text-transform: uppercase;">${formattedDate}</strong></p>
     </div>
 </body>
 </html>
