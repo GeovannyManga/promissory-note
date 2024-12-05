@@ -202,7 +202,7 @@ case "addres":
     <title>Documento</title>
 </head>
 <body>
-    <div style="height: auto; ">
+    <div>
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
         </p>
