@@ -194,7 +194,7 @@ case "addres":
     const content2 = document.createElement("div");
 
     content.innerHTML = `
-    <div style="font-size: 10px;>
+    <div style="font-size: 10px;">
       <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
       <p style="text-align: center;"><span style="color: #000000;"><strong>CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ</strong></span></p>
       <p style="text-align: center;"><span style="color: #000000;"><strong>CARTA DE INSTRUCCIÓN</strong></span></p>
