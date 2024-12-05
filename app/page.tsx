@@ -326,7 +326,7 @@ case "addres":
       margin: 0.5,
       filename: `Pagaré_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       paginate: {
         addLink: true,
         displayMode: 'auto-fit',
