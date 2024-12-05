@@ -202,7 +202,7 @@ case "addres":
     <title>Documento</title>
 </head>
 <body>
-    <div style="height: auto; font-size: 10px;">
+    <div style="height: auto; ">
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
         </p>
@@ -222,6 +222,7 @@ case "addres":
             Tipo de documento <strong style="text-transform: uppercase;">${formData.documentType}</strong> 
             No. identificación <strong style="text-transform: uppercase;">${formData.documentNumber}</strong>
         </p>
+        <div style="font-size: 10px;">
         <p style="text-align: left;">
             1. El cliente por medio del presente escrito autoriza a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" de conformidad con el artículo 622 del código de comercio, en forma irrevocable y permanente para diligenciar sin previo aviso los espacios en blanco contenidos en el presente pagaré que ha otorgado a su orden, cuando exista incumplimiento de cualquier obligación a su cargo o se presente cualquier evento que permita a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" acelerar las obligaciones conforme a los reglamentos de los servicios, de acuerdo con las siguientes instrucciones:
         </p>
@@ -240,6 +241,7 @@ case "addres":
         <p style="text-align: left;">
             e) Así mismo, el PADRE DE FAMILIA/ACUDIENTE autoriza expresamente a diligenciar los espacios que se han dejado en blanco en el pagaré, así como los espacios correspondientes a su nombre y domicilio.
         </p>
+        </div>
         <p style="text-align: center;">
             <strong>PAGARÉ</strong>
         </p>
