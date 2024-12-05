@@ -249,7 +249,7 @@ case "addres":
             Yo, <strong style="text-transform: uppercase;">${formData.guardianName}</strong>, mayor de edad, con domicilio en Bogotá DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagaré a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el día <strong style="text-transform: uppercase;">${formattedDate}</strong>, las siguientes cantidades:
         </p>
         <p style="text-align: left;">1. Por concepto de Prestación de Servicios Educativos, la suma de:</p>
-        <div style="display: flex; flex-direction: row; width: 100%; margin-top: 20px">
+        <div style="display: flex; flex-direction: row; width: 100%; margin-top: 20px; min-height: min-content; height: auto;">
             <div style="display: flex; flex-direction: row; width: 50%;">
                 <div style="width: 100%; height: 0; border: #000000 solid 1px; align-self: flex-end;"></div>
             </div>
