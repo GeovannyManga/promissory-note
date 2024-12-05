@@ -194,26 +194,68 @@ case "addres":
     const content2 = document.createElement("div");
 
     content.innerHTML = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+</head>
+<body>
     <div style="height: 100vh;">
-      <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
-      <p style="text-align: center;"><span style="color: #000000;"><strong>CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ</strong></span></p>
-      <p style="text-align: center;"><span style="color: #000000;"><strong>CARTA DE INSTRUCCIÓN</strong></span></p>
-      <p style="text-align: center;"><span style="color: #000000;"><strong>AUTORIZACIÓN PARA DILIGENCIAR EL DOCUMENTO CON ESPACIOS EN BLANCO PARA SER</strong></span></p>
-      <p style="text-align: center;"><span style="color: #000000;"><strong>CONVERTIDO EN PAGARÉ</strong></span></p>
-      <p style="text-align: left;">Tipo de documento <strong style="text-transform: uppercase;">${formData.documentType}</strong> No. identificación <strong style="text-transform: uppercase;">${formData.documentNumber}</strong></p>
-      <p style="text-align: left;">1. El cliente por medio del presente escrito autoriza a la CORPORACI&Oacute;N EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" de conformidad con el articulo 622 del código de comercio, en forma irrevocable y permanente para diligenciar sin previo aviso los espacios en blanco contenidos en el presente pagaré que ha otorgado a su órden, cuando exista incumplimiento de cualquier obligaci&oacute;n a su cargo o se presente cualquier evento que permita la CORPORACION EDUCATIVA ADVENTISTA SUR DE BOGOT&Aacute; "CEASB" acelerar las obligaciones conforme a los reglamentos de los servicios, de acuerdo con las siguientes instrucciones:</p>
-      <p style="text-align: left;">a) El lugar de pago sera la ciudad de Bogotá el lugar y fecha de emision del pagaré seran el lugar y el día en que sea llenado por la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", y la fecha de vencimiento sera el día siguiente al de la fecha de emisión.</p>
-      <p style="text-align: left;">b) El monto por concepto de capital ser&aacute; igual al valor de las obligaciones contraídas por el Contrato de Prestaci&oacute;n de Servicios Educativos del (los) estudiante(s) <strong style="text-transform: uppercase;">${formData.studentName}</strong> de lo(s) grado(s) <strong style="text-transform: uppercase;">${formData.grade}</strong> por el a&ntilde;o escolar 2025 exigibles a favor de la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" de las que EL PADRE DE FAMILIA/ACUDIENTE sea deudor individual, conjunto o solidario, o de las que sea garante o avalista, o de las que por cualquier motivo resulten a su cargo, mas los valores que se relacionen con las anteriores obligaciones por concepto de honorarios de abogados, gastos administrativos y de cobranza, as&iacute; como cualquier otra suma que se deba por concepto distinto de intereses</p>
-      <p style="text-align: left;">c) El monto de intereses causados por mora correspondera a la tasa m&aacute;xima permitida por la Superintendencia Financiera por los servicios dejados de pagar.</p>
-      <p style="text-align: left;">d) En caso de incumplimiento o retardos frente a las obligaciones correspondientes a la prestación de servicios educativos a cargo del PADRE DE FAMILIA/ACUDIENTE, La CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOT&Aacute; "CEASB" queda autorizada para exigir el valor de dichas obligaciones contraidas por el deudor, garante o avalista, individual, conjunta o solidariamente, sin necesidad de requerimiento judicial o extrajudicial para constituir en mora, asi como para incorporarlas en el pagaré.</p><br>
-      <p style="text-align: left;">e) Así mismo el PADRE DE FAMILIA /ACUDIENTE autoriza expresamente a diligenciar los espacios que se han dejado en blanco en el pagaré. así como los espacios correspondientes a su nombre y domicilio.</p>
-      <p style="text-align: center;"><strong>PAGARÉ</strong></p>
-      <p style="text-align: left;">Yo,<strong style="text-transform: uppercase;">${formData.guardianName}</strong>, mayor de edad, con domicilio en Bogot&aacute; DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagar&eacute; a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ."CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el dia <strong style="text-transform: uppercase;">${formattedDate}</strong>, las siguientes cantidades<strong><br /></strong></p>
-      <p style="text-align: left;">1. Por concepto de Prestación de Servicios Educativos, la suma de:&nbsp;</p>
-      <p style="text-align: left;">($) moneda corriente.&nbsp;</p>
-      <p style="text-align: left;">2. Sobre la suma de capital mencionadas en el numeral primero de este pagare, reconocer&eacute; intereses de mora a la tasa maxima legalmente autorizada.</p>
-      <p style="text-align: left;">Bogot&aacute; <strong style="text-transform: uppercase;">${formattedDate}</strong></p>
-      </div>
+        <p style="text-align: left;">
+            <span style="color: #000000;">${contador}</span>
+        </p>
+        <p style="text-align: center;">
+            <span style="color: #000000;"><strong>CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ</strong></span>
+        </p>
+        <p style="text-align: center;">
+            <span style="color: #000000;"><strong>CARTA DE INSTRUCCIÓN</strong></span>
+        </p>
+        <p style="text-align: center;">
+            <span style="color: #000000;"><strong>AUTORIZACIÓN PARA DILIGENCIAR EL DOCUMENTO CON ESPACIOS EN BLANCO PARA SER</strong></span>
+        </p>
+        <p style="text-align: center;">
+            <span style="color: #000000;"><strong>CONVERTIDO EN PAGARÉ</strong></span>
+        </p>
+        <p style="text-align: left;">
+            Tipo de documento <strong style="text-transform: uppercase;">${formData.documentType}</strong> 
+            No. identificación <strong style="text-transform: uppercase;">${formData.documentNumber}</strong>
+        </p>
+        <p style="text-align: left;">
+            1. El cliente por medio del presente escrito autoriza a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" de conformidad con el artículo 622 del código de comercio, en forma irrevocable y permanente para diligenciar sin previo aviso los espacios en blanco contenidos en el presente pagaré que ha otorgado a su orden, cuando exista incumplimiento de cualquier obligación a su cargo o se presente cualquier evento que permita a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" acelerar las obligaciones conforme a los reglamentos de los servicios, de acuerdo con las siguientes instrucciones:
+        </p>
+        <p style="text-align: left;">
+            a) El lugar de pago será la ciudad de Bogotá. El lugar y fecha de emisión del pagaré serán el lugar y el día en que sea llenado por la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", y la fecha de vencimiento será el día siguiente al de la fecha de emisión.
+        </p>
+        <p style="text-align: left;">
+            b) El monto por concepto de capital será igual al valor de las obligaciones contraídas por el Contrato de Prestación de Servicios Educativos del (los) estudiante(s) <strong style="text-transform: uppercase;">${formData.studentName}</strong> de lo(s) grado(s) <strong style="text-transform: uppercase;">${formData.grade}</strong> por el año escolar 2025 exigibles a favor de la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", de las que EL PADRE DE FAMILIA/ACUDIENTE sea deudor individual, conjunto o solidario, o de las que sea garante o avalista, o de las que por cualquier motivo resulten a su cargo, más los valores que se relacionen con las anteriores obligaciones por concepto de honorarios de abogados, gastos administrativos y de cobranza, así como cualquier otra suma que se deba por concepto distinto de intereses.
+        </p>
+        <p style="text-align: left;">
+            c) El monto de intereses causados por mora corresponderá a la tasa máxima permitida por la Superintendencia Financiera por los servicios dejados de pagar.
+        </p>
+        <p style="text-align: left;">
+            d) En caso de incumplimiento o retardos frente a las obligaciones correspondientes a la prestación de servicios educativos a cargo del PADRE DE FAMILIA/ACUDIENTE, la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB" queda autorizada para exigir el valor de dichas obligaciones contraídas por el deudor, garante o avalista, individual, conjunta o solidariamente, sin necesidad de requerimiento judicial o extrajudicial para constituir en mora, así como para incorporarlas en el pagaré.
+        </p>
+        <p style="text-align: left;">
+            e) Así mismo, el PADRE DE FAMILIA/ACUDIENTE autoriza expresamente a diligenciar los espacios que se han dejado en blanco en el pagaré, así como los espacios correspondientes a su nombre y domicilio.
+        </p>
+        <p style="text-align: center;">
+            <strong>PAGARÉ</strong>
+        </p>
+        <p style="text-align: left;">
+            Yo, <strong style="text-transform: uppercase;">${formData.guardianName}</strong>, mayor de edad, con domicilio en Bogotá DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagaré a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el día <strong style="text-transform: uppercase;">${formattedDate}</strong>, las siguientes cantidades:
+        </p>
+        <p style="text-align: left;">1. Por concepto de Prestación de Servicios Educativos, la suma de:</p>
+        <p style="text-align: left;">($) moneda corriente.</p>
+        <p style="text-align: left;">
+            2. Sobre la suma de capital mencionada en el numeral primero de este pagaré, reconoceré intereses de mora a la tasa máxima legalmente autorizada.
+        </p>
+        <p style="text-align: left;">Bogotá <strong style="text-transform: uppercase;">${formattedDate}</strong></p>
+    </div>
+</body>
+</html>
+
     `;
 
     content2.innerHTML = `<body  style="font-size: 10px;">
