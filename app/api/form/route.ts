@@ -38,18 +38,21 @@ export async function POST(req: Request) {
         range: "Hoja 1",
       });
 
-      const numRows = response.data.values ? response.data.values.length : 0;
-      function generateDynamicCode(baseYear, numRows) {
+      function generateDynamicCode(baseYear: string, numRows: number) {
         const codes = [];
         for (let i = 1; i <= numRows; i++) {
             // Formatea el número con 3 dígitos, añadiendo ceros al principio
             const formattedNumber = String(i).padStart(3, '0');
             codes.push(`${baseYear}_${formattedNumber}`);
-        }
-        return codes;
+            return codes
+          }
+          const resp = codes[codes.length -1]
+          return resp
+        
     }
     
     const baseYear = "2025";
+    const numRows = response.data.values ? response.data.values.length : 0;
     const generatedCodes = generateDynamicCode(baseYear, numRows);
 
       const values = [
