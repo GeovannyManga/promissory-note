@@ -57,7 +57,7 @@ export async function POST(req: Request) {
 
       const values = [
         [
-          generatedCodes || "",
+          generatedCodes[0] || "",
           formData.documentType || "",
           formData.documentNumber || "",
           formData.email || "",
