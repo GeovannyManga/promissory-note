@@ -284,7 +284,6 @@ case "addres":
         scale: 1,
         viewport: 'page',
       },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
   
