@@ -202,7 +202,8 @@ case "addres":
     <title>Documento</title>
 </head>
 <body>
-    <div style="height: 100vh;">
+    <div style="height: auto;">
+
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
         </p>
@@ -316,13 +317,13 @@ case "addres":
     
 
     const options = {
-      margin: 0.3,
+      margin: 0.5,
       filename: `Pagaré_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       paginate: {
         addLink: true,
-        displayMode: 'fullpage',
+        displayMode: 'auto-fit',
         scale: 0.5,
         viewport: 'page',
       },
