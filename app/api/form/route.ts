@@ -39,10 +39,22 @@ export async function POST(req: Request) {
       });
 
       const numRows = response.data.values ? response.data.values.length : 0;
+      function generateDynamicCode(baseYear, numRows) {
+        const codes = [];
+        for (let i = 1; i <= numRows; i++) {
+            // Formatea el número con 3 dígitos, añadiendo ceros al principio
+            const formattedNumber = String(i).padStart(3, '0');
+            codes.push(`${baseYear}_${formattedNumber}`);
+        }
+        return codes;
+    }
+    
+    const baseYear = "2025";
+    const generatedCodes = generateDynamicCode(baseYear, numRows);
 
       const values = [
         [
-          "2025_00" + numRows || "",
+          generatedCodes || "",
           formData.documentType || "",
           formData.documentNumber || "",
           formData.email || "",
