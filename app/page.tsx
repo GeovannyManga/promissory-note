@@ -281,7 +281,7 @@ case "addres":
       paginate: {
         addLink: true,
         displayMode: 'fullpage',
-        scale: 1,
+        scale: 0.5,
         viewport: 'page',
       },
     };
