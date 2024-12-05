@@ -266,6 +266,7 @@ case "addres":
         </tr>
     </tbody>
 </table>
+<p>"Educando Para la Vida y la Eternidad"</p>
 
 
 </body>
@@ -273,7 +274,7 @@ case "addres":
     
 
     const options = {
-      margin: 0.5,
+      margin: 0.3,
       filename: `Pagaré_${formData.documentNumber}_${contador}`,
       html2canvas: { scale: 3 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
