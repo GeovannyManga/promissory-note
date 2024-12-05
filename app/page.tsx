@@ -276,7 +276,7 @@ case "addres":
     const options = {
       margin: 0.3,
       filename: `Pagaré_${formData.documentNumber}_${contador}`,
-      html2canvas: { scale: 3 },
+      html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       paginate: {
         addLink: true,
