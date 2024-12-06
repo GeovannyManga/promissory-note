@@ -375,7 +375,7 @@ case "addres":
             htmlFor="documentType"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Tipo de Documento:
+            Tipo de Documento del Acudiente:
           </label>
           <select
             id="documentType"
