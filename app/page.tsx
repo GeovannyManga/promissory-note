@@ -222,7 +222,7 @@ case "addres":
         </p>
         <p style="text-align: left;">
             Tipo de documento <strong style="text-transform: uppercase;">${formData.documentType}</strong> 
-            No. identificación <strong style="text-transform: uppercase;">${formData.documentNumber}</strong>
+            No. identificación <strong style="text-transform: uppercase;">${formData.idNumber}</strong>
         </p>
         <div style="font-size: 10px;">
         <p style="text-align: justify;">
@@ -381,7 +381,7 @@ case "addres":
             htmlFor="documentType"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Tipo de Documento del Acudiente:
+            Tipo de Documento del Estudiante:
           </label>
           <select
             id="documentType"
@@ -408,7 +408,7 @@ case "addres":
             htmlFor="documentNumber"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Número de Documento:
+            Número de Documento Estudiante:
           </label>
           <input
             id="documentNumber"
