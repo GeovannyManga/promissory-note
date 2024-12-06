@@ -375,32 +375,6 @@ case "addres":
         Formulario de Pagaré
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Campo de Tipo de Documento */}
-        <div>
-          <label
-            htmlFor="documentType"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Tipo de Documento del Estudiante:
-          </label>
-          <select
-            id="documentType"
-            value={formData.documentType}
-            onChange={handleChange}
-            className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
-          >
-            <option value="">Seleccione</option>
-            <option value="CC">Cédula de ciudadanía</option>
-            <option value="TI">Tarjeta de identidad</option>
-            <option value="RC">Registro civil</option>
-          </select>
-          {Object.values(formData).every((value) => value === "") ||
-            (formData.documentType === "" && (
-              <p className="text-red-500 text-sm mt-1">
-                Elige un tipo de documento válido
-              </p>
-            ))}
-        </div>
 
         {/* Campo de Número de Documento */}
         <div>
@@ -478,6 +452,32 @@ case "addres":
           {errors.grade && (
             <p className="text-red-500 text-sm mt-1">{errors.grade}</p>
           )}
+        </div>
+        {/* Campo de Tipo de Documento */}
+        <div>
+          <label
+            htmlFor="documentType"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Tipo de Documento del Acudiente:
+          </label>
+          <select
+            id="documentType"
+            value={formData.documentType}
+            onChange={handleChange}
+            className="mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 w-full"
+          >
+            <option value="">Seleccione</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="TI">Tarjeta de identidad</option>
+            <option value="RC">Registro civil</option>
+          </select>
+          {Object.values(formData).every((value) => value === "") ||
+            (formData.documentType === "" && (
+              <p className="text-red-500 text-sm mt-1">
+                Elige un tipo de documento válido
+              </p>
+            ))}
         </div>
 
         {/* Campo de Nombre del Acudiente */}
