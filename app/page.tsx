@@ -205,6 +205,9 @@ case "addres":
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
         </p>
+         <p style="text-align: right;">
+            <span style="color: #000000;">Pagina 1/2</span>
+        </p>
         <p style="text-align: center;">
             <span style="color: #000000;"><strong>CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ</strong></span>
         </p>
@@ -268,6 +271,9 @@ case "addres":
 
     content2.innerHTML = `<body  style="font-size: 10px;">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
+    <p style="text-align: right;">
+            <span style="color: #000000;">Pagina 2/2</span>
+        </p>
 <p style="text-align: center;"><span style="color: #000000;"><strong>CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ.</strong></span></p>
 <p style="text-align: left; font-size: 12px;">Yo,<strong>${formData.guardianName}</strong>, mayor de edad, con domicilio en Bogot&aacute; DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagar&eacute; a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ."CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el día <strong>${formattedDate}</strong>, las siguientes cantidades<strong><br /></strong></p>
 <p style="text-align: center;"><span style="color: #000000;"><strong>AUTORIZACIONES Y DECLARACIONES</strong></span></p>
