@@ -66,7 +66,7 @@ export async function POST(req: Request) {
       // Parámetros para insertar datos en la hoja
       const params = {
         spreadsheetId: sheetId,
-        range: `Hoja 1!A${numRows + 1}`, // Añadir en la siguiente fila
+        range: `Hoja 1!L${numRows + 1}`, // Añadir en la siguiente fila
         valueInputOption: "RAW",
         requestBody: {
           values,
@@ -107,13 +107,13 @@ export async function GET() {
     // Leer la columna A
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: "Hoja 1!A:A",
+      range: "Hoja 1!L:L",
     });
 
     const values = response.data.values;
     if (!values || values.length === 0) {
       return NextResponse.json(
-        { message: "No hay datos en la columna A" },
+        { message: "No hay datos en la columna L" },
         { status: 404 }
       );
     }
