@@ -61,11 +61,12 @@ export async function POST(req: Request) {
           "", // Columna I (vacía)
           "", // Columna J (vacía)
           "", // Columna K (vacía)
-          formData.documentNumber || "", // Columna L
-          formData.guardianName || "", // Columna Q
+          formData.documentNumber || "",
+          formData.studentName || "", // Columna L
+          // Columna Q
           formData.grade || 0, // Columna N
-          formData.studentName || "", // Columna O
           formData.idNumber || "", // Columna P
+          formData.guardianName || "", // Columna O
           formData.email || "", // Columna M
           formData.addres || "", // Columna R
           formData.phone || "", // Columna S
