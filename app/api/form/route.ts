@@ -50,23 +50,32 @@ export async function POST(req: Request) {
 
       const values = [
         [
-          dynamicCode,
-          formData.documentType || "",
-          formData.documentNumber || "",
-          formData.email || "",
-          formData.grade || 0,
-          formData.studentName || "",
-          formData.idNumber || "",
-          formData.guardianName || "",
-          formData.addres || "",
-          formData.phone || "",
+          dynamicCode, // Columna A
+          formData.documentType || "", // Columna B
+          "", // Columna C (vacía)
+          "", // Columna D (vacía)
+          "", // Columna E (vacía)
+          "", // Columna F (vacía)
+          "", // Columna G (vacía)
+          "", // Columna H (vacía)
+          "", // Columna I (vacía)
+          "", // Columna J (vacía)
+          "", // Columna K (vacía)
+          formData.documentNumber || "", // Columna L
+          formData.email || "", // Columna M
+          formData.grade || 0, // Columna N
+          formData.studentName || "", // Columna O
+          formData.idNumber || "", // Columna P
+          formData.guardianName || "", // Columna Q
+          formData.addres || "", // Columna R
+          formData.phone || "", // Columna S
         ],
       ];
 
       // Parámetros para insertar datos en la hoja
       const params = {
         spreadsheetId: sheetId,
-        range: `Hoja 1!L${numRows + 1}`, // Añadir en la siguiente fila
+        range: `Hoja 1!A${numRows + 1}`, // Añadir en la siguiente fila
         valueInputOption: "RAW",
         requestBody: {
           values,
@@ -107,7 +116,7 @@ export async function GET() {
     // Leer la columna A
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: "Hoja 1!L:L",
+      range: "Hoja 1!A:A",
     });
 
     const values = response.data.values;
