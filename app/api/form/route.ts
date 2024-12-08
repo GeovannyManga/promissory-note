@@ -51,25 +51,24 @@ export async function POST(req: Request) {
       const values = [
         [
           dynamicCode, // Columna A
-          formData.documentType || "", // Columna B
-          "", // Columna C (vacía)
-          "", // Columna D (vacía)
-          "", // Columna E (vacía)
-          "", // Columna F (vacía)
-          "", // Columna G (vacía)
-          "", // Columna H (vacía)
-          "", // Columna I (vacía)
-          "", // Columna J (vacía)
-          "", // Columna K (vacía)
+          formData.documentType || "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
           formData.documentNumber || "",
-          formData.studentName || "", // Columna L
-          // Columna Q
-          formData.grade || 0, // Columna N
-          formData.idNumber || "", // Columna P
-          formData.guardianName || "", // Columna O
-          formData.email || "", // Columna M
-          formData.addres || "", // Columna R
-          formData.phone || "", // Columna S
+          formData.studentName || "",
+          formData.grade || 0,
+          formData.idNumber || "",
+          formData.guardianName || "",
+          formData.email || "",
+          formData.addres || "",
+          formData.phone || "",
         ],
       ];
 
