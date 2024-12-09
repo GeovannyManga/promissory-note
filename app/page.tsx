@@ -232,7 +232,7 @@ case "addres":
             a) El lugar de pago será la ciudad de Bogotá. El lugar y fecha de emisión del pagaré serán el lugar y el día en que sea llenado por la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", y la fecha de vencimiento será el día siguiente al de la fecha de emisión.
         </p>
         <p style="text-align: justify;">
-            b) El monto por concepto de capital será igual al valor de las obligaciones contraídas por el Contrato de Prestación de Servicios Educativos del (los) estudiante(s) <strong style="text-transform: uppercase;">${formData.studentName}</strong> de lo(s) grado(s) <strong style="text-transform: uppercase;">${formData.grade}</strong> por el año escolar 2025 exigibles a favor de la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", de las que EL PADRE DE FAMILIA/ACUDIENTE sea deudor individual, conjunto o solidario, o de las que sea garante o avalista, o de las que por cualquier motivo resulten a su cargo, más los valores que se relacionen con las anteriores obligaciones por concepto de honorarios de abogados, gastos administrativos y de cobranza, así como cualquier otra suma que se deba por concepto distinto de intereses.
+            b) El monto por concepto de capital será igual al valor de las obligaciones contraídas por el Contrato de Prestación de Servicios Educativos del (los) estudiante(s) <strong style="text-transform: uppercase;">${formData.studentName}</strong> identificada con el numero de documento <strong>${formData.documentNumber}</strong> de lo(s) grado(s) <strong style="text-transform: uppercase;">${formData.grade}</strong> por el año escolar 2025 exigibles a favor de la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", de las que EL PADRE DE FAMILIA/ACUDIENTE sea deudor individual, conjunto o solidario, o de las que sea garante o avalista, o de las que por cualquier motivo resulten a su cargo, más los valores que se relacionen con las anteriores obligaciones por concepto de honorarios de abogados, gastos administrativos y de cobranza, así como cualquier otra suma que se deba por concepto distinto de intereses.
         </p>
         <p style="text-align: justify;">
             c) El monto de intereses causados por mora corresponderá a la tasa máxima permitida por la Superintendencia Financiera por los servicios dejados de pagar.
@@ -317,7 +317,7 @@ case "addres":
         <tr>
             <td style="padding: 10px; border: 1px solid black; text-align: left;">
                 <p style="margin: 0;">Nombres: <strong>${formData.guardianName}</strong></p>
-                <p style="margin: 0;">No. identificación: <strong>${formData.documentNumber}</strong></p>
+                <p style="margin: 0;">No. identificación: <strong>${formData.idNumber}</strong></p>
             </td>
         </tr>
     </tbody>
