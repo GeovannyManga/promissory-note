@@ -469,8 +469,9 @@ case "addres":
           >
             <option value="">Seleccione</option>
             <option value="CC">Cédula de ciudadanía</option>
-            <option value="TI">Tarjeta de identidad</option>
-            <option value="RC">Registro civil</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="PEP">Permiso especial de permanecia</option>
+            <option value="PPT">Permiso por Protección Temporal</option>
           </select>
           {Object.values(formData).every((value) => value === "") ||
             (formData.documentType === "" && (
