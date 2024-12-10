@@ -270,12 +270,8 @@ case "addres":
     `;
 
     content2.innerHTML = `
-    <style>
-    .page-break {
-        page-break-before: always;
-    }
-</style>
-    <body  style="font-size: 10px; page-break-before: always; data-html2pdf-pagebreak="before;">
+
+    <body  style="font-size: 10px; data-html2pdf-pagebreak="before;">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
