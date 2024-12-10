@@ -200,7 +200,7 @@ case "addres":
     <meta charset="UTF-8">
     <title>Documento</title>
 </head>
-<body style="height: 100em;">
+<body style="font-size: 12px;">
     <div>
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
@@ -247,7 +247,7 @@ case "addres":
         <p style="text-align: center;">
             <strong>PAGARÉ</strong>
         </p>
-        <p style="text-align: justify;">
+        <p style="text-align: justify; font-size:14px;">
             Yo, <strong style="text-transform: uppercase;">${formData.guardianName}</strong>, mayor de edad, con domicilio en Bogotá DC, identificado como aparece al pie de mi firma, actuando en mi propio nombre, declaro de manera expresa por medio del presente instrumento que SOLIDARIA e INCONDICIONALMENTE pagaré a la CORPORACIÓN EDUCATIVA ADVENTISTA SUR DE BOGOTÁ "CEASB", o a su orden, en sus instalaciones de la CLL 10B sur No. 18A-15 Luna Park, el día <strong style="text-transform: uppercase;">${formattedDate}</strong>, las siguientes cantidades:
         </p>
         <p style="text-align: left;">1. Por concepto de Prestación de Servicios Educativos, la suma de:</p>
@@ -269,7 +269,7 @@ case "addres":
 
     `;
 
-    content2.innerHTML = `<body  style="font-size: 10px;">
+    content2.innerHTML = `<body  style="font-size: 10px; margin-top: 20px">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
@@ -327,41 +327,26 @@ case "addres":
     `;
     
 
-    const options = {
-      margin: 0.5,
-      filename: `Pagaré_${formData.documentNumber}_${contador}`,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-      fitToPage: true,
-      paginate: {
-        addLink: true,
-        displayMode: 'fullPage',
-        scale: 0.5,
-        viewport: 'page',
-      },
-    };
 
   
 
-    const options2 = {
-      margin: 0.5,
-      filename: `Autorización_${formData.documentNumber}_${contador}`,
-      html2canvas: { scale: 3 },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-      paginate: {
-        addLink: true,
-        displayMode: 'auto-fit',
-        scale: 0.5,
-        viewport: 'page',
-      },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
 
     const html2pdf = (await import("html2pdf.js")).default;
 
-     html2pdf().from(content2).set(options2).save();
-
-    html2pdf().from(content).set(options).save();
+   
+    const combinedContent = document.createElement("div")
+    combinedContent.appendChild(content);
+    combinedContent.appendChild(content2);
+  
+    const optionsto = {
+      margin: 0.5,
+      filename: `Pagaré_y_Aturozacion_${formData.documentNumber}_${contador}.pdf`,
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+    };
+  
+    // Generar el PDF
+    html2pdf().from(combinedContent).set(optionsto).save();
     setLoader(true)
     router.push('/finish')
   };
