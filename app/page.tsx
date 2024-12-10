@@ -269,7 +269,7 @@ case "addres":
 
     `;
 
-    content2.innerHTML = `<body  style="font-size: 10px; margin-top: 20px">
+    content2.innerHTML = `<body  style="font-size: 10px; margin-top: 20px page-break-before: always;">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
