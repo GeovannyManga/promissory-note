@@ -343,6 +343,7 @@ case "addres":
       filename: `Pagaré_y_Aturozacion_${formData.documentNumber}_${contador}.pdf`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ['css'] },
     };
   
     // Generar el PDF
