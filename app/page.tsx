@@ -269,7 +269,13 @@ case "addres":
 
     `;
 
-    content2.innerHTML = `<body  style="font-size: 10px; margin-top: 20px page-break-before: always;">
+    content2.innerHTML = `
+    <style>
+    .page-break {
+        page-break-before: always;
+    }
+</style>
+    <body  style="font-size: 10px; margin-top: 20px page-break">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
@@ -343,7 +349,11 @@ case "addres":
       filename: `Pagaré_y_Aturozacion_${formData.documentNumber}_${contador}.pdf`,
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-      pagebreak: { mode: ['css'] },
+      pagebreak: {
+        mode: ['css'],
+        before: ['.page-break'], // Fuerza un salto antes de elementos con esta clase
+    },
+
     };
   
     // Generar el PDF
