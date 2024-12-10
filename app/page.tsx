@@ -275,7 +275,7 @@ case "addres":
         page-break-before: always;
     }
 </style>
-    <body  style="font-size: 10px; margin-top: 20px page-break">
+    <body  style="font-size: 10px; margin-top: 20px page-break-before: always;">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
@@ -350,8 +350,8 @@ case "addres":
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       pagebreak: {
-        mode: ['css'],
-        before: ['.page-break'], // Fuerza un salto antes de elementos con esta clase
+        mode: ['avoid-all'],
+        before: ['.break-before'], // Divide la página antes del elemento con esta clase
     },
 
     };
