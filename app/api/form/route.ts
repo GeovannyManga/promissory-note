@@ -4,6 +4,7 @@ import { JWT } from "google-auth-library";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log(process.env.GOOGLE_PRIVATE_KEY)
 const sheetId = process.env.SHEET_ID || "";
 
 interface FormData {
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
       });
 
       const numRows = response.data.values ? response.data.values.length : 0;
-      const dynamicCode = generateDynamicCode("2025", numRows); // Generar código dinámico
+      const dynamicCode = generateDynamicCode("2026", numRows); // Generar código dinámico
 
       const values = [
         [

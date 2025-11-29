@@ -202,6 +202,7 @@ case "addres":
 </head>
 <body style="font-size: 12px;">
     <div>
+      <div>
         <p style="text-align: left;">
             <span style="color: #000000;">${contador}</span>
         </p>
@@ -220,6 +221,7 @@ case "addres":
         <p style="text-align: center;">
             <span style="color: #000000;"><strong>CONVERTIDO EN PAGARÉ</strong></span>
         </p>
+      </div>  
         <p style="text-align: left;">
             Tipo de documento <strong style="text-transform: uppercase;">${formData.documentType}</strong> 
             No. identificación <strong style="text-transform: uppercase;">${formData.idNumber}</strong>
@@ -270,8 +272,13 @@ case "addres":
     `;
 
     content2.innerHTML = `
-
-    <body  style="font-size: 10px;">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Documento</title>
+</head>
+    <body  style="font-size: 10px; margin-top: 0;">
     <p style="text-align: left;"><span style="color: #000000;">${contador}</span></p>
     <p style="text-align: right;">
             <span style="color: #000000;">Pagina 2/2</span>
@@ -326,6 +333,7 @@ case "addres":
 </table>
 
 </body>
+</html>
     `;
     
 
@@ -347,7 +355,7 @@ case "addres":
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       pagebreak: {
         mode: ['avoid-all'],
-        before: ['.break-before'], // Divide la página antes del elemento con esta clase
+    // Divide la página antes del elemento con esta clase
     },
 
     };
