@@ -47,6 +47,7 @@ export async function POST(req: Request) {
       });
 
       const numRows = response.data.values ? response.data.values.length : 0;
+      console.log(numRows)
       const dynamicCode = generateDynamicCode("2026", numRows); // Generar código dinámico
 
       const values = [
